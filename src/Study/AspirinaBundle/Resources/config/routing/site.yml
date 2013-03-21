@@ -1,0 +1,30 @@
+site:
+    pattern:  /
+    defaults: { _controller: "AspirinaBundle:Site:index" }
+
+site_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "AspirinaBundle:Site:show" }
+
+site_new:
+    pattern:  /new
+    defaults: { _controller: "AspirinaBundle:Site:new" }
+
+site_create:
+    pattern:  /create
+    defaults: { _controller: "AspirinaBundle:Site:create" }
+    requirements: { _method: post }
+
+site_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "AspirinaBundle:Site:edit" }
+
+site_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "AspirinaBundle:Site:update" }
+    requirements: { _method: post|put }
+
+site_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "AspirinaBundle:Site:delete" }
+    requirements: { _method: post|delete }
