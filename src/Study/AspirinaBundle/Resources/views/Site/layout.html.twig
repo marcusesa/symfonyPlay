@@ -1,3 +1,13 @@
 {% extends  '::base.html.twig' %}
 
 {% block title 'Site' %}
+
+{% block stylesheets %}
+
+{% stylesheets filter='cssrewrite' 'bundles/aspirina/css/*' %}
+
+<link rel="stylesheet" href="{{ asset_url }}" />
+
+{% endstylesheets %}
+
+{% endblock %}
