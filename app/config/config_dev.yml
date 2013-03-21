@@ -23,6 +23,7 @@ monolog:
             level: info
 
 assetic:
+    bundles: [ "AspirinaBundle" ]
     use_controller: true
 
 #swiftmailer:
