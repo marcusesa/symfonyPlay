@@ -1,6 +1,7 @@
-aspirina_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: AspirinaBundle:Default:index }
+AspirinaBundle:
+    resource: "@AspirinaBundle/Controller"
+    prefix:  /
+    type: annotation
 
 AspirinaBundle_site:
     resource: "@AspirinaBundle/Resources/config/routing/site.yml"
