@@ -34,7 +34,7 @@ security:
         - { path: ^/_wdt, roles: 'IS_AUTHENTICATED_ANONYMOUSLY' }    
         
         # URL protected
-        - { path: ^/, roles: ROLE_ADMIN }
-        - { path: ^/site, roles: ROLE_ADMIN}
+        - { path: ^/site, roles: ROLE_ADMIN }
+        - { path: ^/, roles: [ROLE_ADMIN, ROLE_TYPIST, ROLE_COORDINATOR, ROLE_STATISTICIAN] }
         
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
