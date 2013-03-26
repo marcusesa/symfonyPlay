@@ -29,16 +29,37 @@ class Role implements RoleInterface
      * @ORM\Column(name="role", type="string", length=20, unique=true)
      */
     private $role;
-
+    
     /**
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="roles")
+     * @ORM\OneToMany(targetEntity="User", mappedBy="role")
      */
-    private $users;
+    protected $users;
 
     public function __construct()
     {
         $this->users = new ArrayCollection();
     }
+    
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }    
 
     /**
      * @see RoleInterface
@@ -48,27 +69,42 @@ class Role implements RoleInterface
         return $this->role;
     }
     
-    public function setRole($role) {
+    public function setRole($role)
+    {
         $this->role = $role;
         return $this;
     }
 
-    public function getName() {
-        return $this->name;
-    }
-
-    public function setName($name) {
-        $this->name = $name;
+    /**
+     * Add users
+     *
+     * @param \Study\AspirinaBundle\Entity\User $users
+     * @return Role
+     */
+    public function addUser(\Study\AspirinaBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+    
         return $this;
     }
 
-    public function getUsers() {
+    /**
+     * Remove users
+     *
+     * @param \Study\AspirinaBundle\Entity\User $users
+     */
+    public function removeUser(\Study\AspirinaBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUsers()
+    {
         return $this->users;
     }
-
-    public function setUsers(User $users) {
-        $this->users = $users;
-        return $this;
-    }
-
 }

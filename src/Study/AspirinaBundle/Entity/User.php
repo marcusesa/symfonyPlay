@@ -54,12 +54,10 @@ class User implements AdvancedUserInterface, EquatableInterface, \Serializable
     private $active;
     
     /**
-     * @var array
-     * 
-     * @ORM\Column(name="roles", type="array")
-     * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
+     * @ORM\ManyToOne(targetEntity="Role", inversedBy="users")
+     * @ORM\JoinColumn(name="role_id", referencedColumnName="id")
      */
-    private $roles;
+    private $role;
 
     /**
      * @var string
@@ -198,20 +196,33 @@ class User implements AdvancedUserInterface, EquatableInterface, \Serializable
     {
         return $this->email;
     }
+    
+    /**
+     * Set role
+     *
+     * @param \Study\AspirinaBundle\Entity\Role $role
+     * @return User
+     */
+    public function setRole(\Study\AspirinaBundle\Entity\Role $role = null)
+    {
+        $this->role = $role;
+    
+        return $this;
+    }
+
+    /**
+     * Get role
+     *
+     * @return \Study\AspirinaBundle\Entity\Role 
+     */
+    public function getRoles()
+    {
+        return array($this->role);
+    }    
 
     public function eraseCredentials()
     {
         
-    }
-
-    public function getRoles()
-    {
-        return $this->roles->toArray();
-    }
-    
-    public function setRoles(array $roles)
-    {
-        $this->roles = $roles;
     }
 
     public function isEqualTo(UserInterface $user)
