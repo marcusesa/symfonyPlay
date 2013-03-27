@@ -3,6 +3,7 @@
 namespace Study\AspirinaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Site
@@ -41,7 +42,16 @@ class Site
      * @ORM\Column(name="investigator", type="string", length=255, nullable=true)
      */
     private $investigator;
-
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Subject", mappedBy="site")
+     */
+    protected $subjects;
+    
+    public function __construct()
+    {
+        $this->subjects = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -120,5 +130,38 @@ class Site
     public function getInvestigator()
     {
         return $this->investigator;
+    }
+
+    /**
+     * Add subjects
+     *
+     * @param \Study\AspirinaBundle\Entity\Subject $subjects
+     * @return Site
+     */
+    public function addSubject(\Study\AspirinaBundle\Entity\Subject $subjects)
+    {
+        $this->subjects[] = $subjects;
+    
+        return $this;
+    }
+
+    /**
+     * Remove subjects
+     *
+     * @param \Study\AspirinaBundle\Entity\Subject $subjects
+     */
+    public function removeSubject(\Study\AspirinaBundle\Entity\Subject $subjects)
+    {
+        $this->subjects->removeElement($subjects);
+    }
+
+    /**
+     * Get subjects
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSubjects()
+    {
+        return $this->subjects;
     }
 }
