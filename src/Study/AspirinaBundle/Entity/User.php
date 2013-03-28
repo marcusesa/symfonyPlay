@@ -219,6 +219,11 @@ class User implements AdvancedUserInterface, EquatableInterface, \Serializable
     {
         return array($this->role);
     }    
+    
+    public function getRole()
+    {
+        return $this->role;
+    }
 
     public function eraseCredentials()
     {
