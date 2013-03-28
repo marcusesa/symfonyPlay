@@ -63,3 +63,9 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
+
+services:
+    audittrail:
+        class: Study\AspirinaBundle\EventListener\AudittrailListener
+        tags:
+            - { name: doctrine.event_listener, event: onFlush }
