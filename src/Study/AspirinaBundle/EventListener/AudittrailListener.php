@@ -12,7 +12,10 @@ class AudittrailListener
         $uow = $em->getUnitOfWork();
         
         foreach ($uow->getScheduledEntityInsertions() as $entity) {
-
+            $r = $this->getEntityColumnValues($entity, $em);
+            var_dump($r);
+            die;
+            
         }
 
         foreach ($uow->getScheduledEntityUpdates() as $entity) {
@@ -22,15 +25,10 @@ class AudittrailListener
         }
 
         foreach ($uow->getScheduledEntityDeletions() as $entity) {
-            $idEntity = $entity->getId();
-            $repository = $em->getRepository(get_class($entity));
-            $r = $repository->findOneById($idEntity);
-            $r = $entity;
+            $r = $this->getEntityColumnValues($entity, $em);
             var_dump($r);
             die;
         }
-
-        
         
         foreach ($uow->getScheduledCollectionDeletions() as $col) {
 
@@ -39,5 +37,16 @@ class AudittrailListener
         foreach ($uow->getScheduledCollectionUpdates() as $col) {
 
         }
+    }
+    
+    private function getEntityColumnValues($entity,$em)
+    {
+        $cols = $em->getClassMetadata(get_class($entity))->getColumnNames();
+        $values = array();
+        foreach($cols as $col){
+          $getter = 'get'.ucfirst($col);
+          $values[$col] = $entity->$getter();
+        }
+        return $values;
     }
 }
