@@ -12,22 +12,16 @@ class AudittrailListener
         $uow = $em->getUnitOfWork();
         
         foreach ($uow->getScheduledEntityInsertions() as $entity) {
-            $r = $this->getEntityColumnValues($entity, $em);
-            var_dump($r);
-            die;
-            
+            $this->getEntityColumnValues($entity, $em);            
         }
 
         foreach ($uow->getScheduledEntityUpdates() as $entity) {
-            var_dump($entity->getId());
-            var_dump($uow->getEntityChangeSet($entity));
-            die;
+            $entity->getId();
+            $uow->getEntityChangeSet($entity);
         }
 
         foreach ($uow->getScheduledEntityDeletions() as $entity) {
-            $r = $this->getEntityColumnValues($entity, $em);
-            var_dump($r);
-            die;
+            $this->getEntityColumnValues($entity, $em);
         }
         
         foreach ($uow->getScheduledCollectionDeletions() as $col) {
