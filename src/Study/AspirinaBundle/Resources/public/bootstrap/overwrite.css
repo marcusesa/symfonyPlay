@@ -1,0 +1,25 @@
+/**
+ * Overwrite twitter bootstrap.
+ */
+@media (max-width: 979px) {
+    .navbar-fixed-top,
+    .navbar-fixed-bottom {
+        position: fixed;
+    }
+}
+@media (max-width: 767px) {
+    .navbar-fixed-top,
+    .navbar-fixed-bottom {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  background-image: url("../../img/bootstrap/glyphicons-halflings.png");
+}
+
+.icon-white {
+  background-image: url("../../img/bootstrap/glyphicons-halflings-white.png");
+}

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>{% block title %}Prototype paper!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        
+        {% stylesheets 
+            'bundles/aspirina/css/*' 
+            'bundles/aspirina/bootstrap/bootstrap.css'
+            filter='cssrewrite' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+            
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block navbartop %}
+            <div class="navbar navbar-fixed-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="#">Aspirina</a>
+                        <div class="btn-group pull-right">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="icon-user"></i> Username
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Profile</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Sign Out</a></li>
+                            </ul>
+                        </div>
+                        <div class="pull-right item-navbar">
+                            <i class="icon-time icon-white"></i>
+                            <span id="date-now">Loading...</span>
+                        </div>
+                        <div class="nav-collapse">
+                            <ul class="nav">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Study <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-header">
+                                            Visits
+                                        </li>
+                                        <li class="">
+                                            <a href="study.html" data-breadcrumb="Study#Screening" data-ajax-load-html="#content-master">
+                                                Screening
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#" data-breadcrumb="Study#Medical History">
+                                                Medical History
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#" data-breadcrumb="Study#Ophthalmic History">
+                                                Ophthalmic History
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#" data-breadcrumb="Study#Washout Safety Visit">
+                                                Washout Safety Visit
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#" data-breadcrumb="Study#Baseline">
+                                                Baseline
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#" data-breadcrumb="Study#Week 1">
+                                                Week 1
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#" data-breadcrumb="Study#Week 2">
+                                                Week 2
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#" data-breadcrumb="Study#Week 4">
+                                                Week 4
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#" data-breadcrumb="Study#Week 8">
+                                                Week 8
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#" data-breadcrumb="Study#Week 12 / Initial Treatment Exit">
+                                                Week 12 / Initial Treatment Exit
+                                            </a>
+                                        </li>
+                                    </ul>    
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Management <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="site.html" data-ajax-load-html="#content-master" data-breadcrumb="Management#Site#List">Site</a></li>
+                                        <li><a href="#">Subject</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">User</a></li>
+                                        <li><a href="#">Access Control</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Clean <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="form.html" data-ajax-load-html="#content-master" data-breadcrumb="DCF#List">DCF</a></li>
+                                        <li><a href="#">Query</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Trail</a></li>
+                                <li><a href="#">Report</a></li>
+                                <li><a href="#">Export</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+            
+        <div class="container-fluid" id="content-master">
+            {% block content %}{% endblock %}
+        </div>
+        
+        {% block navbarbottom %}
+            <div class="navbar navbar-fixed-bottom">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <div class="btn-group pull-right">
+                            <a id="subject-selected" class="btn dropdown-toggle" data-toggle="modal" data-target="#modal-large" href="subject-selected.html" data-ajax-load-html="#modal-large">Selected Subject</a>
+                        </div>
+                        <div class="nav-collapse">
+                            <ul class="nav">
+                                <li><a href="#" class="subject-selected-item">Dmnum: 1843</a></li>
+                                <li><a href="#" class="subject-selected-item">Subject number: 1843</a></li>
+                                <li><a href="#" class="subject-selected-item">Initials: REP</a></li>
+                                <li><a href="#" class="subject-selected-item">Site number: 654 / Hospital das Clínicas</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+        {% javascripts
+            '@AspirinaBundle/Resources/public/js/lib/jquery.js'
+            '@AspirinaBundle/Resources/public/js/plugin/jquery-ui-1.8.21.custom.min.js'
+            '@AspirinaBundle/Resources/public/js/plugin/bootstrap.min.js'
+            '@AspirinaBundle/Resources/public/js/plugin/idletimer.js'
+            '@AspirinaBundle/Resources/public/js/plugin/idletimeout.js'
+            '@AspirinaBundle/Resources/public/js/*' %}
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    </body>
+</html>

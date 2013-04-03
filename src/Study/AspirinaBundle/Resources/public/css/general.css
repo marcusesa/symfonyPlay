@@ -1,0 +1,24 @@
+body {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+.sidebar-nav {
+    padding: 9px 0;
+}
+
+/**
+ * My styles.
+ */
+.item-navbar {
+    padding: 9px 10px 11px;
+}
+#date-now {
+    padding: 10px 10px;
+}
+a.subject-selected-item {
+    cursor: default;
+}
+#modal-large {
+    width: auto;
+}
+
