@@ -14,7 +14,6 @@
     <table class="records_list table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Initial</th>
                 <th>Actions</th>
             </tr>
@@ -22,25 +21,17 @@
         <tbody>
             {% for entity in entities %}
                 <tr>
-                    <td><a href="{{ path('subject_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                     <td>{{ entity.initial }}</td>
                     <td>
                         <div class="btn-group">
                             <a href="{{ path('subject_show', { 'id': entity.id }) }}" class="btn"><i class="icon-book"></i></a>
-                            <a href="{{ path('subject_edit', { 'id': entity.id }) }}" class="btn btn-danger"><i class="icon-trash"></i></a>
+                            <a href="{{ path('subject_edit', { 'id': entity.id }) }}" class="btn"><i class="icon-pencil"></i></a>
                         </div>
                     </td>
                 </tr>
             {% endfor %}
-            </tbody>
-        </table>
-        <ul>
-            <li>
-                <a href="{{ path('subject_new') }}">
-                    Create a new entry
-                </a>
-            </li>
-        </ul>
+        </tbody>
+    </table>
 </div>
 
 
