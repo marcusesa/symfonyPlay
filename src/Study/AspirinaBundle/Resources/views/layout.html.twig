@@ -28,7 +28,7 @@
                         <a class="brand" href="#">Aspirina</a>
                         <div class="btn-group pull-right">
                             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                                <i class="icon-user"></i> Username
+                                <i class="icon-user"></i> {{ app.user.username }}
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
@@ -142,7 +142,7 @@
                             <span class="icon-bar"></span>
                         </a>
                         <div class="btn-group pull-right">
-                            <a id="subject-selected" class="btn dropdown-toggle" data-toggle="modal" data-target="#modal-large" href="subject-selected.html" data-ajax-load-html="#modal-large">Selected Subject</a>
+                            <a id="subject-selected" class="btn dropdown-toggle" data-toggle="modal" data-target="#modal-large" href="{{ path('subject_list') }}" data-ajax-load-html="#modal-large">Selected Subject</a>
                         </div>
                         <div class="nav-collapse">
                             <ul class="nav">
@@ -156,6 +156,10 @@
                 </div>
             </div>
         {% endblock %}
+            
+        <div class="modal hide fade" id="modal-normal"></div>
+        <div class="modal hide fade" id="modal-large"></div>
+        
         {% javascripts
             '@AspirinaBundle/Resources/public/js/lib/jquery.js'
             '@AspirinaBundle/Resources/public/js/plugin/jquery-ui-1.8.21.custom.min.js'
