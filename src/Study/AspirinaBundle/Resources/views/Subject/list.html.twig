@@ -1,0 +1,31 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Selected subject</h3>
+</div>
+<div id="modal-subject-selected-body" class="modal-body" style="width: 600px;">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Initials</th>
+                <th>Site Name</th>
+                <th>Site Number</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td>{{ entity.id }}</td>
+                    <td>{{ entity.initial }}</td>
+                    <td>{{ entity.site.getName() }}</td>
+                    <td>{{ entity.site.getNumber() }}</td>
+                    <td><i class="icon-circle-arrow-right"></i></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+</div>
