@@ -1,7 +1,9 @@
-{% extends 'AspirinaBundle::Site/layout.html.twig' %}
+{% extends 'AspirinaBundle::layout.html.twig' %}
 
-{% block body -%}
-    <h1>Site creation</h1>
+{% block content -%}
+    <div class="page-header">
+        <h1>Site creation</h1>
+    </div>
 
     <form action="{{ path('site_create') }}" method="post" {{ form_enctype(form) }}>
         {{ form_widget(form) }}
@@ -10,11 +12,5 @@
         </p>
     </form>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('site') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+    <a href="{{ path('site') }}" class="btn-navbar">Back to the list</a>
 {% endblock %}

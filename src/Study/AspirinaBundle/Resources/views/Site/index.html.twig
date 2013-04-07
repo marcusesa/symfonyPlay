@@ -1,9 +1,12 @@
-{% extends 'AspirinaBundle::Site/layout.html.twig' %}
+{% extends 'AspirinaBundle::layout.html.twig' %}
 
-{% block body %}
-    <h1>Site list</h1>
+{% block content %}
+    <div class="page-header">
+        <a class="btn btn-primary pull-right" href="{{ path('site_new') }}"><i class="icon-file"></i>Create a new entry</a>
+        <h1>Site list</h1>
+    </div>
 
-    <table class="records_list">
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>Id</th>
@@ -21,25 +24,13 @@
                     <td>{{ entity.name }}</td>
                     <td>{{ entity.investigator }}</td>
                     <td>
-                        <ul>
-                            <li>
-                                <a href="{{ path('site_show', { 'id': entity.id }) }}">show</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('site_edit', { 'id': entity.id }) }}">edit</a>
-                            </li>
-                        </ul>
+                        <div class="btn-group">
+                            <a href="{{ path('site_show', { 'id': entity.id }) }}"  class="btn"><i class="icon-book"></i></a>
+                            <a href="{{ path('site_edit', { 'id': entity.id }) }}" class="btn"><i class="icon-pencil"></i></a>
+                        </div>
                     </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('site_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
 {% endblock %}
