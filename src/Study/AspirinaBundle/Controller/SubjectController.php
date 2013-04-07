@@ -34,6 +34,25 @@ class SubjectController extends Controller
             'entities' => $entities,
         );
     }
+    
+    /**
+     * List all Subject entities.
+     *
+     * @Route("/list", name="subject_list")
+     * @Method("GET")
+     * @Template()
+     */
+    public function listAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('AspirinaBundle:Subject')->findAll();
+        
+
+        return array(
+            'entities' => $entities,
+        );
+    }
 
     /**
      * Creates a new Subject entity.
@@ -192,7 +211,7 @@ class SubjectController extends Controller
 
         return $this->redirect($this->generateUrl('subject'));
     }
-
+    
     /**
      * Creates a form to delete a Subject entity by id.
      *
