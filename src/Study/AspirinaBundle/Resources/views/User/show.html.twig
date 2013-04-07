@@ -1,9 +1,11 @@
-{% extends '::base.html.twig' %}
+{% extends 'AspirinaBundle::layout.html.twig' %}
 
-{% block body -%}
-    <h1>User</h1>
+{% block content -%}
+    <div class="page-header">
+        <h1>User</h1>
+    </div>
 
-    <table class="record_properties">
+    <table class="table table-bordered">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -24,23 +26,18 @@
         </tbody>
     </table>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('user') }}">
+    <form action="{{ path('user_delete', { 'id': entity.id }) }}" method="post">
+        <input type="hidden" name="_method" value="DELETE" />
+        {{ form_widget(delete_form) }}
+        <button type="submit" class="btn btn-danger pull-right">Delete</button>
+    </form>
+
+    <div class="btn-group">
+        <a href="{{ path('user') }}" class="btn">
             Back to the list
         </a>
-    </li>
-    <li>
-        <a href="{{ path('user_edit', { 'id': entity.id }) }}">
+        <a href="{{ path('user_edit', { 'id': entity.id }) }}" class="btn btn-primary">
             Edit
         </a>
-    </li>
-    <li>
-        <form action="{{ path('user_delete', { 'id': entity.id }) }}" method="post">
-            <input type="hidden" name="_method" value="DELETE" />
-            {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
-        </form>
-    </li>
-</ul>
+    </div>
 {% endblock %}
