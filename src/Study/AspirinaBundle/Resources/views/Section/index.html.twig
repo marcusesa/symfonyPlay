@@ -1,0 +1,35 @@
+{% extends 'AspirinaBundle::layout.html.twig' %}
+
+{% block content -%}
+    <div class="page-header">
+        <a class="btn btn-primary pull-right" href="{{ path('section_new') }}"><i class="icon-file"></i>Create a new entry</a>
+        <h1>Section list</h1>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Alias</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('section_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.title }}</td>
+                <td>{{ entity.alias }}</td>
+                <td>
+                <ul>
+                    <div class="btn-group">
+                        <a href="{{ path('section_show', { 'id': entity.id }) }}" class="btn"><i class="icon-book"></i></a>
+                        <a href="{{ path('section_edit', { 'id': entity.id }) }}" class="btn"><i class="icon-pencil"></i></a>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
