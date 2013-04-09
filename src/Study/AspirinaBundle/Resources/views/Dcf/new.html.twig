@@ -1,0 +1,18 @@
+{% extends 'AspirinaBundle::layout.html.twig' %}
+
+{% block content -%}
+    <div class="page-header">
+        <h1>Dcf creation</h1>
+    </div>
+
+    <form action="{{ path('dcf_create') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <p>
+            <button type="submit" class="btn">Create</button>
+        </p>
+    </form>
+
+    <a href="{{ path('dcf') }}" class="btn-navbar">
+        Back to the list
+    </a>
+{% endblock %}

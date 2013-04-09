@@ -1,0 +1,36 @@
+{% extends 'AspirinaBundle::layout.html.twig' %}
+
+{% block content -%}
+    <div class="page-header">
+        <a class="btn btn-primary pull-right" href="{{ path('dcf_new') }}">Create a new entry</a>
+        <h1>Dcf list</h1>
+    </div>        
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Question</th>
+                <th>Comments</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('dcf_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.type }}</td>
+                <td>{{ entity.question }}</td>
+                <td>{{ entity.comments }}</td>
+                <td>
+                    <div class="btn-group">
+                        <a href="{{ path('dcf_show', { 'id': entity.id }) }}" class="btn"><i class="icon-book"></i></a>
+                        <a href="{{ path('dcf_edit', { 'id': entity.id }) }}" class="btn"><i class="icon-pencil"></i></a>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
