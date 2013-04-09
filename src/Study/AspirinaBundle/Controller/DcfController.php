@@ -160,7 +160,7 @@ class DcfController extends Controller
             200,
             array(
                 'Content-Type' => 'application/pdf',
-                'Content-Disposition' => 'inline; filename="dcf-{$id}.pdf"'
+                'Content-Disposition' => 'inline; filename="dcf-'.$id.'.pdf"'
             )
         );
     }
