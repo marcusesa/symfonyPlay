@@ -3,6 +3,7 @@
 namespace Study\AspirinaBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -149,8 +150,18 @@ class DcfController extends Controller
             throw $this->createNotFoundException('Unable to find Dcf entity.');
         }
 
-        return array(
+        $html = $this->renderView('AspirinaBundle:Dcf:pdf.html.twig',
+            array(
             'entity' => $entity,
+        ));
+        $pdfGenerator = $this->get('spraed.pdf.generator');
+
+        return new Response($pdfGenerator->generatePDF($html),
+            200,
+            array(
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'inline; filename="dcf-{$id}.pdf"'
+            )
         );
     }
 
