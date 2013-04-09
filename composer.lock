@@ -1,5 +1,5 @@
 {
-    "hash": "9ff6ee57e8aa39ce8dd7a0ca7bfa8db8",
+    "hash": "fa844f82907272f6b22598938dd13930",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1405,6 +1405,55 @@
             "time": "2013-02-22 17:59:21"
         },
         {
+            "name": "spraed/pdf-generator-bundle",
+            "version": "dev-master",
+            "target-dir": "Spraed/PDFGeneratorBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stedekay/SpraedPDFGeneratorBundle.git",
+                "reference": "f8be40321c698f4ff9c6a4e29b661b90939b4367"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stedekay/SpraedPDFGeneratorBundle/zipball/f8be40321c698f4ff9c6a4e29b661b90939b4367",
+                "reference": "f8be40321c698f4ff9c6a4e29b661b90939b4367",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": ">=2.0.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Spraed\\PDFGeneratorBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Spraed Team",
+                    "homepage": "http://spraed.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://github.com/stedekay/SpraedPDFGeneratorBundle/contributors"
+                }
+            ],
+            "description": "This bundle creates (multiple) PDFs in Symfony2 by converting Twig/HTML templates.",
+            "homepage": "https://github.com/stedekay/SpraedPDFGeneratorBundle",
+            "keywords": [
+                "bundle",
+                "generator",
+                "pdf",
+                "spraed"
+            ],
+            "time": "2013-02-20 14:43:38"
+        },
+        {
             "name": "swiftmailer/swiftmailer",
             "version": "v4.3.0",
             "source": {
@@ -1833,7 +1882,8 @@
     ],
     "minimum-stability": "alpha",
     "stability-flags": {
-        "doctrine/doctrine-fixtures-bundle": 20
+        "doctrine/doctrine-fixtures-bundle": 20,
+        "spraed/pdf-generator-bundle": 20
     },
     "platform": {
         "php": ">=5.3.3"
