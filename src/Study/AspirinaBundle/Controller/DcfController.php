@@ -133,6 +133,28 @@ class DcfController extends Controller
     }
 
     /**
+     * Displays a pdf of existing Dcf entity.
+     *
+     * @Route("/{id}/pdf", name="dcf_pdf")
+     * @Method("GET")
+     * @Template()
+     */
+    public function pdfAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('AspirinaBundle:Dcf')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Dcf entity.');
+        }
+
+        return array(
+            'entity' => $entity,
+        );
+    }
+
+    /**
      * Edits an existing Dcf entity.
      *
      * @Route("/{id}", name="dcf_update")
