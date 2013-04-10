@@ -48,9 +48,13 @@ class DcfController extends Controller
         $entity  = new Dcf();
         $form = $this->createForm(new DcfType(), $entity);
         $form->bind($request);
-
+        
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $entity->setUser($this->get('security.context')->getToken()->getUser());
+            $entity->setCreate(new \DateTime);
+            $entity->setStatus(0);
+            
             $em->persist($entity);
             $em->flush();
 
@@ -225,7 +229,29 @@ class DcfController extends Controller
 
         return $this->redirect($this->generateUrl('dcf'));
     }
+    
+    /**
+     * Close a Dcf entity.
+     *
+     * @Route("/{id}/close", name="dcf_close")
+     */
+    public function closeAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
 
+        $entity = $em->getRepository('AspirinaBundle:Dcf')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Dcf entity.');
+        }
+
+        $entity->setStatus(1);
+        $entity->setFinish(new \DateTime);
+        $em->persist($entity);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('dcf'));
+    }
     /**
      * Creates a form to delete a Dcf entity by id.
      *

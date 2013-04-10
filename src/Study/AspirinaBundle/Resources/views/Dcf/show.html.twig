@@ -12,6 +12,18 @@
                 <td>{{ entity.id }}</td>
             </tr>
             <tr>
+                <th>Visit</th>
+                <td>{{ entity.visit.getTitle() }}</td>
+            </tr>
+            <tr>
+                <th>Section</th>
+                <td>{{ entity.section.getTitle() }}</td>
+            </tr>
+            <tr>
+                <th>Author</th>
+                <td>{{ entity.user.getUsername() }}</td>
+            </tr>
+            <tr>
                 <th>Type</th>
                 <td>{{ entity.type }}</td>
             </tr>

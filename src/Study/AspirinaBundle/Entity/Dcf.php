@@ -54,6 +54,35 @@ class Dcf
     private $section;
 
     /**
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="users")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="`create`", type="datetime")
+     */
+    private $create;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="finish", type="datetime", nullable=true)
+     */
+    private $finish;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="status", type="boolean")
+     */
+    private $status;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255)
@@ -201,6 +230,29 @@ class Dcf
     }
 
     /**
+     * Set create data
+     *
+     * @param string $create
+     * @return Dcf
+     */
+    public function setCreate(\Datetime $create)
+    {
+        $this->create = $create;
+    
+        return $this;
+    }
+
+    /**
+     * Get create data
+     *
+     * @return string 
+     */
+    public function getCreate()
+    {
+        return $this->create;
+    }
+
+    /**
      * Set question
      *
      * @param string $question
@@ -245,4 +297,39 @@ class Dcf
     {
         return $this->comments;
     }
+    
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    public function setUser($user)
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    public function getFinish()
+    {
+        return $this->finish;
+    }
+
+    public function setFinish(\Datetime $finish)
+    {
+        $this->finish = $finish;
+        return $this;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+
 }
