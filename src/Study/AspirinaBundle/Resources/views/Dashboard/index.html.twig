@@ -1,6 +1,23 @@
 {% extends "AspirinaBundle::layout.html.twig" %}
 
 {% block content %}
-	<div class="hero-unit">
+	<div class="row-fluid">
+		<div class="well span4">
+			<h1>Welcome</h1>
+			<p>{{ app.user.username }} a new version of crf paper!!!</p>
+		</div>
+		<div class="well span4">
+			<h2>Subject Total: {{ totalSubjects }}</h2>
+		</div>
+		<div class="well span4">
+			<h2>Site Total: {{ totalSites }}</h2>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="well span4">
+			<h2>DCF Total: {{ totalDcfs }}</h2>
+                        <h4>Dcfs Open: <span style="color: red;">{{ openDcfs }}</span></h4>
+                        <h4>Dcfs Close: <span style="color: green;">{{ closeDcfs }}</span></h4>
+		</div>
 	</div>
 {% endblock %}
