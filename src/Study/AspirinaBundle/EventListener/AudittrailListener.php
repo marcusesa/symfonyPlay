@@ -12,15 +12,18 @@ class AudittrailListener
         $uow = $em->getUnitOfWork();
         
         foreach ($uow->getScheduledEntityInsertions() as $entity) {
-            
             $properties = array();
-
+            
             foreach ($this->getPropertiesNames($entity) as $propertyName) {
-                $propertyValue = $this->getPropertyValue($entity, $propertyName);
-                $properties[$propertyName] = $propertyValue;
+                if($this->hasAuditTrailInProperty($entity, $propertyName)){
+                    $propertyValue = $this->getPropertyValue($entity, $propertyName);
+                    $properties[$propertyName] = $propertyValue;
+                }
             }
 
             die(var_dump($properties));
+            
+            
             $this->getEntityColumnValues($entity, $em);            
         }
 
@@ -45,8 +48,8 @@ class AudittrailListener
     private function getPropertiesNames($entity)
     {
         $reflectClass = new \ReflectionClass($entity);
-        $properties = $reflectClass->getProperties(\ReflectionProperty::IS_PRIVATE);
-
+        $properties = $reflectClass->getProperties();
+        
         $propertiesNames = array();
 
         foreach ($properties as $property) {
@@ -55,6 +58,17 @@ class AudittrailListener
 
         return $propertiesNames;
     }
+    
+    private function hasAuditTrailInProperty($entity, $propertyName)
+    {
+        $reflectClass = new \ReflectionClass($entity);        
+        $reflectProperty = new \ReflectionProperty($reflectClass->getName(), $propertyName);
+        
+        if (strpos($reflectProperty->getDocComment(), '@Audittrail')) {
+            return true;
+        }
+        return false;
+    }
 
     private function getPropertyValue($entity, $propertyName)
     {
@@ -62,14 +76,4 @@ class AudittrailListener
         return $entity->$getter();
     }
     
-    private function getEntityColumnValues($entity,$em)
-    {
-        $cols = $em->getClassMetadata(get_class($entity))->getColumnNames();
-        $values = array();
-        foreach($cols as $col){
-          $getter = 'get'.ucfirst($col);
-          $values[$col] = $entity->$getter();
-        }
-        return $values;
-    }
 }
