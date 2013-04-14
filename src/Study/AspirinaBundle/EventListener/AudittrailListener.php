@@ -12,6 +12,15 @@ class AudittrailListener
         $uow = $em->getUnitOfWork();
         
         foreach ($uow->getScheduledEntityInsertions() as $entity) {
+            
+            $properties = array();
+
+            foreach ($this->getPropertiesNames($entity) as $propertyName) {
+                $propertyValue = $this->getPropertyValue($entity, $propertyName);
+                $properties[$propertyName] = $propertyValue;
+            }
+
+            die(var_dump($properties));
             $this->getEntityColumnValues($entity, $em);            
         }
 
@@ -31,6 +40,26 @@ class AudittrailListener
         foreach ($uow->getScheduledCollectionUpdates() as $col) {
 
         }
+    }
+
+    private function getPropertiesNames($entity)
+    {
+        $reflectClass = new \ReflectionClass($entity);
+        $properties = $reflectClass->getProperties(\ReflectionProperty::IS_PRIVATE);
+
+        $propertiesNames = array();
+
+        foreach ($properties as $property) {
+            $propertiesNames[] = $property->getName();
+        }
+
+        return $propertiesNames;
+    }
+
+    private function getPropertyValue($entity, $propertyName)
+    {
+        $getter = 'get'.ucfirst($propertyName);
+        return $entity->$getter();
     }
     
     private function getEntityColumnValues($entity,$em)
