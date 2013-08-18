@@ -2,11 +2,13 @@
 
 namespace Study\AspirinaBundle\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Subject
  *
+ * @Gedmo\Loggable
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Study\AspirinaBundle\Entity\SubjectRepository")
  */
@@ -23,7 +25,7 @@ class Subject
 
     /**
      * @var string
-     *
+     * @Gedmo\Versioned
      * @ORM\Column(name="initial", type="string", length=3)
      */
     private $initial;
