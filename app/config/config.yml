@@ -55,7 +55,21 @@ doctrine:
     orm:
         auto_generate_proxy_classes: %kernel.debug%
         auto_mapping: true
-
+        mappings:
+          gedmo_loggable:
+            type: annotation
+            prefix: Gedmo\Loggable\Entity
+            dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
+            alias: GedmoLoggable # this one is optional and will default to the name set for the mapping
+            is_bundle: false
+#            StofDoctrineExtensionsBundle: ~
+            
+stof_doctrine_extensions:
+    default_locale: en_US
+    orm:
+        default:
+            loggable: true
+                
 # Swiftmailer Configuration
 swiftmailer:
     transport: %mailer_transport%
@@ -64,9 +78,9 @@ swiftmailer:
     password:  %mailer_password%
     spool:     { type: memory }
 
-services:
-    audittrail:
-        class: Study\AspirinaBundle\EventListener\AudittrailListener
-        arguments: ['@service_container']
-        tags:
-            - { name: doctrine.event_listener, event: onFlush }
+#services:
+#    audittrail:
+#        class: Study\AspirinaBundle\EventListener\AudittrailListener
+#        arguments: ['@service_container']
+#        tags:
+#            - { name: doctrine.event_listener, event: onFlush }
