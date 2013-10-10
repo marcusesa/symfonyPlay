@@ -1,0 +1,36 @@
+{% extends 'AspirinaBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>Trail</h1>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Obejct ID</th>
+                <th>User</th>
+                <th>Data</th>
+                <th>Tabela</th>
+                <th>Ação</th>
+                <th>Versão</th>
+                <th>Antigo</th>
+                <th>Novo</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.objectId }}</td>
+                <td>{{ entity.username }}</td>
+                <td>{{ entity.loggedAt.date|date("Y-M-d H:i:s") }}</td>
+                <td>{{ entity.objectClass }}</td>
+                <td>{{ entity.action }}</td>
+                <td>{{ entity.version }}</td>
+                <td>---</td>
+                <td>{{ dump(entity.data) }}</td>        
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>        
+{% endblock %}

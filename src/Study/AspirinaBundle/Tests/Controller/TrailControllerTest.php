@@ -1,0 +1,16 @@
+<?php
+
+namespace Study\AspirinaBundle\Tests\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+
+class TrailControllerTest extends WebTestCase
+{
+    public function testIndex()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/index');
+    }
+
+}
