@@ -32,7 +32,7 @@ class Subject
 
     /**
      * @var integer
-     *
+     * @Gedmo\Versioned
      * @ORM\ManyToOne(targetEntity="Site", inversedBy="sites")
      * @ORM\JoinColumn(name="site_id", referencedColumnName="id")
      */
